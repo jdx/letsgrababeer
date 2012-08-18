@@ -1,0 +1,31 @@
+.hero-unit
+  %h1 Let's grab a beer!
+  .image= image_tag "jeff.jpg"
+  %p I like drinking beer! I think the best chats are shared over a quick after-work pint. I definitely don't meet with enough people, so I thought making a quick webapp to easily let people schedule a meetup with me would be perfect.
+  %p Whether you're a close friend, an acquantance, or someone I don't yet know, I'd love to meet up!
+  %p I'm usually in San Francisco, but I do travel semi-frequenly. Here's the upcoming places I'll be:
+  :plain
+    <div id="tripit-badge"><script type="text/javascript" src="https://www.tripit.com/account/badge/id/C0F7DE9226DBF186520860F912FE5CDE/div_id/tripit-badge/badge.js"></script><noscript><a href="/">TripIt - Organize your travel</a></noscript></div>
+  %br/
+  %a.btn.btn-primary.btn-large{ data: { toggle: 'modal' }, href: '#grabModal' } I'm thirsty!
+  %p Only thing: please no recruiters.
+#grabModal.modal.fade.hide
+  .modal-header
+    %button.close{ data: { dismiss: 'modal' } } ×
+    %h3 Schedule a beer session
+    .modal-body
+      = form_for @grab do |f|
+        = f.label :email
+        = f.text_field :email
+        = f.label :date
+        = f.text_field :date, class: 'datepicker'
+        = f.label :location
+        = f.select :location, [ "The Black Horse", "The Chieftain", "The Sutter Gutter", "City Beer Store", "Anywhere", "Other" ]
+        = f.label :time
+        = f.select :time, [ "6:00", "7:00", "8:00", "9:00" ]
+        = f.label :topic
+        = f.select :topic, [ "Coding", "Architecture", "Beer", "Catch up", "Other" ]
+        = f.label :comments
+        = f.text_area :comments, rows: 3
+        .buttons
+          = f.submit "Let's grab a beer!", class: 'btn btn-primary'
